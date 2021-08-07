@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Checkout with Receipt</title>
+</head>
+<body>
+<div class="span8">
+    <hr width="700">
+    <table class="table table-bordered">
+        <tr class="well">
+            <td class="tdCenter"><b>Checkout Form</b></td>
+
+    </table>
+    <script>
+        function ValidateForm()
+        {
+            var Name = document.forms["Form"]["name"].value;
+            var add = document.forms["Form"]["address"].value;
+            var City = document.forms["Form"]["city"].value;
+            var Province = document.forms["Form"]["province"].value;
+            var pcode = document.forms["Form"]["postalcode"].value;
+            if (Name == null || Name == "")
+            {
+                alert("Please Enter a Name");
+                return false;
+            }
+            if (add == null || add == "" )
+            {
+                alert("Please enter a valid Address!");
+                return false;
+            }
+            if (City == null || City == "" )
+            {
+                alert("Please enter a City!");
+                return false;
+            } if (Province == null || Province == "" )
+        {
+            alert("Please enter a Province!");
+            return false;
+        } if (pcode == null || pcode == "" )
+        {
+            alert("Please Enter a Postal Code!");
+            return false;
+        }
+        else
+        {
+            alert("Your Form has been validated. You may click on Ok and Submit the form");
+receipt();
+            return true;
+        }
+        }
+        function receipt ()
+        {
+            var Name = document.forms["Form"]["name"].value;
+            var add = document.forms["Form"]["address"].value;
+            var City = document.forms["Form"]["city"].value;
+            var Province = document.forms["Form"]["province"].value;
+            var pcode = document.forms["Form"]["postalcode"].value;
+            var Total = document.forms["Form"]["total"].value;
+            var temp = Total;
+            var tax =(Total*13)/100;
+            var a =1;
+            var b=3;
+            var c=4;
+            var d=3;
+            var e=4;
+            var f=5;
+            var g=6;
+            var date = new Date();
+            var ftotal = parseFloat(tax) + parseFloat(Total);
+            if (ftotal<=25)
+            {
+                //var delivery = parseFloat(a);
+                var deliverycost = parseFloat(d);
+                var day = date.getDate()+1;
+                var month = date.getMonth();
+                var year = date.getFullYear();
+            }
+            if (ftotal>=25 && ftotal<=50)
+            {
+                //var delivery=parseFloat(a);
+                var deliverycost= parseFloat(e);
+                var day = date.getDate()+1;
+                var month = date.getMonth();
+                var year = date.getFullYear();
+            }
+            if (ftotal>=50&& ftotal<=75)
+            {
+                //var delivery=parseFloat(b);
+                var deliverycost= parseFloat(f);
+                var day = date.getDate()+3;
+                var month = date.getMonth();
+                var year = date.getFullYear();
+            }
+            if(ftotal>=75)
+            {
+                //var delivery=parseFloat(c);
+                var deliverycost= parseFloat(g);
+                var day = date.getDate()+4;
+                var month = date.getMonth();
+                var year = date.getFullYear();
+            }
+
+            ftotal += parseFloat(deliverycost) ;
+            var opened = window.open("");
+            opened.document.write
+            ("<html><head><title>Receipt</title></head><body><b><i>Shipping to:"+ " " +Name+ "<br>"+add+ "<br>" + City + "," + " " + Province + "<br>" + pcode + "<br><br>" +"Order Information:"+"</b></i>" +"<br>"+ "Your order is processed, please verify the information" +"<b><i>"+"<br> "+"Tax&nbsp=&nbsp$" +tax+ "<br>" +"Delivery&nbsp=&nbsp$"+deliverycost+"<br> "+"Total Order is&nbsp:&nbsp$"+ftotal +"</b></i><br>" +"Estimated Delivery Date is&nbsp:&nbsp"+day+"/"+month+"/"+year+"</body></html>");
+        }
+    </script>
+    <!--<script id="shopping-cart" type="text/x-handlebars-template">​
+        <div> Name: {{totalPrice}} </div>​
+        ​</script>
+    <form name="Form"  method="post">
+        Name:	&nbsp&nbsp&nbsp&nbsp
+        <input type="text" name="name" placeholder="Name">	&nbsp&nbsp&nbsp&nbsp
+        Address:	&nbsp&nbsp&nbsp&nbsp
+        <input type="text" name="address" placeholder="Address" maxlength="100"><br>
+        City:		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <input type="text" name="city" placeholder="City">&nbsp&nbsp&nbsp&nbsp&nbsp
+        Province:	&nbsp&nbsp&nbsp&nbsp&nbsp
+        <input type="text" name="province" placeholder="Province"><br>
+        Postal Code:	&nbsp&nbsp&nbsp&nbsp
+        <input type="text" name="postalcode" placeholder="Postal Code">
+        &nbsp&nbsp&nbsp&nbsp
+        Total:	&nbsp&nbsp&nbsp&nbsp
+        <input type="text" name="total" value="{{ totalPrice }}">
+<br>
+        <button type="reset" class="btn btn-success"  value="Reset">Reset</button>
+    </form>
+    </tr>-->
+    <div class="alert alert-warning" role="alert">
+    Your Cart Total: {{ totalPrice }}
+</div>
+
+
+    <div class="container">
+        <form class="form-horizontal" name="Form"  method="post">
+            <div class="form-group">
+                <label class="control-label col-sm-2" >Full Name: </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Enter Full Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Address: </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="address" placeholder="Enter Full Address">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">City:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="city" placeholder="Enter City">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Province: </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="province" placeholder="Enter Province">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Postal Code:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="postalcode" placeholder="Enter Postal Code">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Total: </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="total" value="{{ totalPrice }}" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-success" onclick="ValidateForm()">Submit & Generate Receipt</button>
+                    <button type="reset" class="btn btn-info"  value="Reset">Reset</button>
+                   <!-- <button class="btn btn-success" onclick="receipt()">Receipt</button> -->
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

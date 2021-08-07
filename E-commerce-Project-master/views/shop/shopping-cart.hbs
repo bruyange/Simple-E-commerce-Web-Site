@@ -1,0 +1,41 @@
+{{# if products }}
+    <p><a class="btn btn-primary btn-lg" href="/" role="button">Go back to Products</a></p>
+    <a class="btn btn-success btn-lg" href="/checkout" type="button">Checkout</a>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <ul class="list-group">
+                <div class="alert alert-success" role="alert">
+                    <h1>Hoser Hut - Shopping Cart</h1>
+                    <strong>Total Price: {{ totalPrice }}</strong>
+                </div>
+                <hr width="550" align="left"><hr width="550" align="left">
+                {{# each products }}
+                    <li class="list-group-item">
+                        Item Name:<br>
+                        <span class="badge">Quantity: {{ this.qty }}</span>
+                        <strong>{{ this.item.title }}</strong><br>
+                        Price:
+                        <span class="label label-success">${{ this.price }}</span>
+<br><br>
+
+                        <div class="btn-group">
+                            <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Action <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/reduce/{{this.item._id}}">Reduce item by One</a></li>
+                                <li><a href="/remove/{{this.item._id}}">Remove All Items</a></li>
+                            </ul>
+                        </div>
+<br>
+                    </li>
+                    <hr width="550" align="left"><hr width="550" align="left">
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+{{ else }}
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <h2>No Items in Cart</h2>
+        </div>
+    </div>
+{{/if}}

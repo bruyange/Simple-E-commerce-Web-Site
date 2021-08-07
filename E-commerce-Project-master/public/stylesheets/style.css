@@ -1,0 +1,19 @@
+.thumbnail img {
+    max-height: 150px;
+}
+
+
+.text-center {
+    font-weight: bold;
+    font-size: 24px;
+    color: #081e3d;
+}
+.caption .cptn {
+    text-align: center;
+    color: #7c880a;
+}
+.caption .description
+{
+    text-align: center;
+    color: #96a4ff;
+}
